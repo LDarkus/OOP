@@ -1,5 +1,6 @@
 package controller;
 
+import com.aspose.cells.SaveFormat;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import model.table.TableSportsman;
@@ -137,8 +138,132 @@ public class Utility {
         try {
             Desktop.getDesktop().open(new File(fileLocation));
         } catch (IOException e) {
+            showAlertDialog("На вашем устройстве невозможно открыть Excel файл по умолчанию");
+        }
+
+
+    }
+
+    public static void SaveToPDF(List<TableSportsman> sportsmen)
+    {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+
+        Sheet sheet = workbook.createSheet("Спортсмены");
+        sheet.setColumnWidth(0, 2000);
+        sheet.setColumnWidth(1, 5000);
+        sheet.setColumnWidth(2, 5000);
+        sheet.setColumnWidth(3, 5000);
+        sheet.setColumnWidth(4, 6000);
+        sheet.setColumnWidth(5, 5000);
+
+        Row header = sheet.createRow(0);
+
+        CellStyle headerStyle = workbook.createCellStyle();
+        headerStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        XSSFFont font = workbook.createFont();
+        font.setFontName("Arial");
+        font.setFontHeightInPoints((short) 12);
+        font.setBold(true);
+        headerStyle.setFont(font);
+        headerStyle.setBorderBottom(BorderStyle.THICK);
+        headerStyle.setBorderLeft(BorderStyle.THICK);
+        headerStyle.setBorderRight(BorderStyle.THICK);
+
+        Cell headerCell = header.createCell(0);
+        headerCell.setCellValue("№");
+        headerCell.setCellStyle(headerStyle);
+
+
+        headerCell = header.createCell(1);
+        headerCell.setCellValue("ФИО");
+        headerCell.setCellStyle(headerStyle);
+
+        headerCell = header.createCell(2);
+        headerCell.setCellValue("Секция");
+        headerCell.setCellStyle(headerStyle);
+
+        headerCell = header.createCell(3);
+        headerCell.setCellValue("Разряд");
+        headerCell.setCellStyle(headerStyle);
+
+        headerCell = header.createCell(4);
+        headerCell.setCellValue("Номер телефона");
+        headerCell.setCellStyle(headerStyle);
+
+        headerCell = header.createCell(5);
+        headerCell.setCellValue("ФИО тренера");
+        headerCell.setCellStyle(headerStyle);
+
+        //Content of the table
+        CellStyle style = workbook.createCellStyle();
+        style.setWrapText(true);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+
+        Row row;
+        for (int i = 0; i < sportsmen.size(); i++) {
+            row = sheet.createRow(1 + i);
+
+            Cell cell = row.createCell(0);
+            cell.setCellValue(i+1);
+            cell.setCellStyle(style);
+
+            cell = row.createCell(1);
+            cell.setCellValue(sportsmen.get(i).getFullName());
+            cell.setCellStyle(style);
+
+            cell = row.createCell(2);
+            cell.setCellValue(sportsmen.get(i).getSportName());
+            cell.setCellStyle(style);
+
+            cell = row.createCell(3);
+            cell.setCellValue(sportsmen.get(i).getTitleName());
+            cell.setCellStyle(style);
+
+            cell = row.createCell(4);
+            cell.setCellValue(sportsmen.get(i).getPhoneNumber());
+            cell.setCellStyle(style);
+
+            cell = row.createCell(5);
+            cell.setCellValue(sportsmen.get(i).getCoachName());
+            cell.setCellStyle(style);
+        }
+
+        //Saving to file
+        File currDir = new File(".");
+        String path = currDir.getAbsolutePath();
+        String fileLocation = path.substring(0, path.length() - 1) + "sportsman.xlsx";
+
+        try (FileOutputStream outputStream = new FileOutputStream(fileLocation);) {
+            workbook.write(outputStream);
+            workbook.close();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        //-------Opening-----------
+
+
+        String fileLocation1 = path.substring(0, path.length() - 1) + "Excel-to-PDF.pdf";
+        try {
+            com.aspose.cells.Workbook pdfWorkbook = new com.aspose.cells.Workbook(fileLocation);
+            currDir = new File(".\\sportsman.xlsx");
+            currDir.delete();
+            pdfWorkbook.save(fileLocation1, SaveFormat.PDF);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+            Desktop.getDesktop().open(new File(".\\Excel-to-PDF.pdf"));
+        } catch (IOException e) {
+            showAlertDialog("На вашем устройстве невозможно открыть pdf файл по умолчанию");
+        }
+
     }
 
 }

@@ -4,6 +4,7 @@ import controller.main.MainController;
 import controller.sport.SportController;
 import database.DataBase;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -55,11 +56,14 @@ public class TitleController {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        nameColumn.setOnEditCommit(event -> {
-            SportTitle sportTitle = event.getRowValue();
-            System.out.println(sportTitle);
-            sportTitles.get(sportTitles.indexOf(sportTitle)).setName(event.getNewValue());
-            DataBase.updateSportTitle(sportTitle.getId(), event.getNewValue());
+        nameColumn.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<SportTitle, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<SportTitle, String> event) {
+                SportTitle sportTitle = event.getRowValue();
+                System.out.println(sportTitle);
+                sportTitles.get(sportTitles.indexOf(sportTitle)).setName(event.getNewValue());
+                DataBase.updateSportTitle(sportTitle.getId(), event.getNewValue());
+            }
         });
         fillTable(sportTitles);
     }

@@ -40,6 +40,8 @@ public class MainController {
     private MenuItem showTitle;
     @FXML
     private MenuItem exportToExcel;
+    @FXML
+    private MenuItem exportToPDF;
 
     @FXML
     private TableView<TableSportsman> tableView;
@@ -77,6 +79,7 @@ public class MainController {
     @FXML
     private TableColumn<TableSportsman, String> coachNameCol;
 
+    //method for work with table
     private void initTable() {
         fullNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
         sportCol.setCellValueFactory(new PropertyValueFactory<>("sportName"));
@@ -104,6 +107,7 @@ public class MainController {
         stage.show();
     }
 
+
     public void menuActionHandler(ActionEvent actionEvent) {
         Object source = actionEvent.getSource();
         if (source == closeButton) {
@@ -119,6 +123,10 @@ public class MainController {
         }
         if (source == exportToExcel) {
             Utility.saveToExcel(tableView.getItems());
+        }
+        if(source==exportToPDF)
+        {
+            Utility.SaveToPDF(tableView.getItems());
         }
     }
 
@@ -136,6 +144,8 @@ public class MainController {
         tableSportsman.setSportName(DataBase.getSportName(sportsman.getSportId()));
         tableView.getItems().add(tableSportsman);
     }
+
+
 
     public void updateSportsmanHandler(MouseEvent event) {
         if (tableView.getSelectionModel().getSelectedItem() == null) {

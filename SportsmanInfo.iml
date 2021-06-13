@@ -9,5 +9,23 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="h2-1.4.200" level="project" />
     <orderEntry type="library" name="curvesapi-1.06" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Desktop/aspose-cells-21.5-java/lib/aspose-cells-21.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Desktop/aspose-cells-21.5-java/lib/bcprov-jdk15on-160.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
