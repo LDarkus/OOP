@@ -1,4 +1,4 @@
-package database;
+package model;
 
 import model.Sport;
 import model.SportTitle;
@@ -200,10 +200,7 @@ public class DataBase {
     }
 
     //-------------------------------------------SportTitle-------------------------------------------------------------
-    /**
-     * Returns all elements from SportTitle table
-     * @return List of SportTitle
-     */
+
     public static ArrayList<SportTitle> getAllSportTitle() {
         ArrayList<SportTitle> sportTitles = new ArrayList<>();
         try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM SportTitle")) {

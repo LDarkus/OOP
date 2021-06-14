@@ -3,7 +3,7 @@ package controller.main;
 import controller.Utility;
 import controller.sport.SportController;
 import controller.title.TitleController;
-import database.DataBase;
+import model.DataBase;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import model.Sport;
 import model.SportTitle;
 import model.Sportsman;
-import model.table.TableSportsman;
+import model.TableSportsman;
 
 import java.io.IOException;
 import java.util.ArrayList;

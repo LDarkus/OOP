@@ -2,7 +2,7 @@ package controller.title;
 
 import controller.main.MainController;
 import controller.sport.SportController;
-import database.DataBase;
+import model.DataBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

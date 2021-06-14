@@ -3,7 +3,7 @@ package controller;
 import com.aspose.cells.SaveFormat;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import model.table.TableSportsman;
+import model.TableSportsman;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

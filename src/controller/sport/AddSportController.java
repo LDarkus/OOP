@@ -1,7 +1,7 @@
 package controller.sport;
 
 import controller.Utility;
-import database.DataBase;
+import model.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;

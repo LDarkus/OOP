@@ -2,7 +2,7 @@ package controller.main;
 
 import controller.Utility;
 import controller.sport.SportController;
-import database.DataBase;
+import model.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,8 +20,6 @@ import model.Sportsman;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class AddSportsmanController {
 

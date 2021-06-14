@@ -2,7 +2,7 @@ package controller.main;
 
 import controller.Utility;
 import controller.sport.SportController;
-import database.DataBase;
+import model.DataBase;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,10 +13,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import model.Sport;
 import model.SportTitle;
-import model.Sportsman;
-import model.table.TableSportsman;
+import model.TableSportsman;
 
 import java.io.IOException;
 import java.util.List;
