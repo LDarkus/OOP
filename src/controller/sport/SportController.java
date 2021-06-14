@@ -1,5 +1,6 @@
 package controller.sport;
 
+import controller.Utility;
 import controller.main.MainController;
 import model.DataBase;
 import javafx.event.ActionEvent;
@@ -56,12 +57,24 @@ public class SportController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         nameColumn.setOnEditCommit(event -> {
-            Sport sport = event.getRowValue();
-            System.out.println(sport);
-            sports.get(sports.indexOf(sport)).setName(event.getNewValue());
-            DataBase.updateSport(sport.getId(), event.getNewValue());
+            if(event.getNewValue().isEmpty())
+            {
+                Utility.showAlertDialog("Введите новое название секции");
+
+            }
+            else {
+                Sport sport = event.getRowValue();
+                System.out.println(sport);
+                sports.get(sports.indexOf(sport)).setName(event.getNewValue());
+                DataBase.updateSport(sport.getId(), event.getNewValue());
+
+            }
+            tableView.getItems().clear();
+            fillTable(sports);
+
+
         });
-        fillTable(sports);
+       fillTable(sports);
     }
 
     public static void showSportWindow(ActionEvent actionEvent) {

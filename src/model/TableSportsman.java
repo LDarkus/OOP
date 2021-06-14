@@ -29,7 +29,7 @@ public class TableSportsman extends Sportsman {
     public void setTitleName(String titleName) {
         this.titleName = titleName;
     }
-
+    
     @Override
     public String getPhoneNumber() {
         String phoneNumber = super.getPhoneNumber();
